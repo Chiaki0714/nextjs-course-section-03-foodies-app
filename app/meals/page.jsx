@@ -16,7 +16,7 @@ export default async function MealsPage() {
       <header className={styles.header}>
         <h1>
           Delicious meals, created{''}
-          <span className={styles.highlight}>by you</span>
+          <span className={styles.highlight}> by you</span>
         </h1>
         <p>
           Choose your favorite recipe and cook it yourself. It is ease and fun!
