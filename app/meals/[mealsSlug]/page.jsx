@@ -3,6 +3,14 @@ import styles from './page.module.css';
 import { getMeal } from '@/lib/meals';
 import { notFound } from 'next/navigation';
 
+export async function generateMetadata({ params }) {
+  const meal = getMeal(params.mealsSlug);
+  return {
+    title: meal.title,
+    description: meal.summary,
+  };
+}
+
 export default function MealsDetailPage({ params }) {
   const meal = getMeal(params.mealsSlug);
   if (!meal) {
@@ -15,7 +23,11 @@ export default function MealsDetailPage({ params }) {
     <>
       <header className={styles.header}>
         <div className={styles.image}>
-          <Image src={meal.image} alt={meal.title} fill />
+          <Image
+            src={`${process.env.NEXT_PUBLIC_S3_URL}/${meal.image}`}
+            alt={meal.title}
+            fill
+          />
         </div>
         <div className={styles.headerText}>
           <h1>{meal.title}</h1>
